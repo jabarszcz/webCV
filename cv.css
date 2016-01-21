@@ -1,0 +1,199 @@
+* {
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Merriweather";
+    /*font-weight: normal;*/
+    src: url('font/Merriweather-Light.ttf');
+}
+
+@font-face {
+    font-family: "Merriweather";
+    font-weight: bold;
+    src: url('font/Merriweather-Regular.ttf');
+}
+
+.master_container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    /*
+    font-family: helvetica;
+   */
+    /*font-family: "Latin Modern Roman", serif;*/
+    /*font-family: Garamond, Georgia, Times, "Times New Roman", serif;*/
+    font-family: "Merriweather", "DejaVu Serif", "Times New Roman", serif;
+}
+
+p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+.info:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 1px;
+    background: #8c8988;
+}
+
+h1 {
+    text-align: center;
+    font-variant: small-caps;
+    font-size: 1.2em; /*14pt;*/
+    font-weight: normal;
+}
+
+.address {
+    float: left;
+    padding-left: 10px;
+}
+
+.address p {
+    text-align: left;
+}
+
+.contacts {
+    float: right;
+    padding-right: 10px;
+}
+
+.contacts p {
+    text-align: right;
+}
+
+.section {
+    clear: both;
+    overflow: auto;
+    padding: 10px;
+}
+
+.title_container {
+    width: 20%;
+    float: left;
+}
+
+h2 {
+    margin: 10px 10px auto 10px;
+    font-weight: bold;
+    font-size: 1.07em; /*12pt;*/
+}
+
+.contents_container {
+    float:right;
+    width: 80%;
+}
+
+.skillset_container {
+    width: 50%;
+    float: left;
+}
+
+.skillset {
+    margin-bottom: auto;    
+    padding: 10px 10px 10px 10px;
+}
+
+h3 {
+    font-size: 1.0em;/*12pt;*/
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 0px;
+}
+
+.skill_list {
+    font-size: 0.9em;
+    padding-top: 2px;
+    padding-left: 5px;
+}
+
+.experience {
+    padding: 10px;
+}
+
+.experience_line {
+    clear: both;
+}
+
+.experience_line .description {
+}
+
+.experience_line .description .short {
+    font-weight: bold;
+}
+
+.experience_line .time {
+    float: right;
+    margin-left: 30px;
+}
+
+.experience_line .time span.time_finish {
+    display: inline-block;
+    width: 4ch;
+}
+
+.institution_line {
+    clear: both;
+    font-size: 0.95em;
+}
+
+ul.detail {
+    list-style-type: none;
+    padding-left: 15px;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+ul.detail li:before {
+  content: "  \B7  ";
+}
+
+.list_container {
+    padding: 10px;
+}
+
+.list {
+    font-size: 0.9em;
+}
+
+/* HOVERING BEHAVIOR */
+
+.skillset:hover,
+.experience:hover,
+.list_container:hover,
+.section:hover {
+    background-color: rgba(232, 220, 195, 0.3);/*248, 242, 240, 0.5);*/
+}
+
+.section:hover {
+    background-color: rgba(232, 220, 195, 0.2);
+}
+
+/* fun mode */
+
+/*
+:hover > .section {
+  font-size: 0.5em;
+}
+
+:hover > .section:hover {
+  font-size: 1.0em;
+}
+*/
+
+/* PRINTING */
+
+@media print {
+    @page {
+	margin: 2cm;
+/*	orphans: 4;
+	widows: 4;*/
+    }
+
+    .section .experience {
+	page-break-inside: avoid;
+	overflow: hidden;
+    }
+}
