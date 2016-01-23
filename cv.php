@@ -6,5 +6,5 @@
         $lang = "FR";
 	$oppo = "EN";
     }
-    passthru('../cv/cv.py -p public -b 10 -c ../cv -l ' . $lang);
+    passthru('../cv/cv.py -p public -b 10 ' . (getenv('CVPATH') ? '-p ' . getenv('CVPATH') : '') . ' -l ' . $lang);
 ?>
