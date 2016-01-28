@@ -24,3 +24,4 @@ written to follow the format of a LaTeX template inspired from [this
 one](http://www.rpi.edu/dept/arc/training/latex/resumes/res2.pdf),
 found [here](http://www.rpi.edu/dept/arc/training/latex/resumes/).
 
+An example output can be seen [here](http://jabarsz.cz/cv).
