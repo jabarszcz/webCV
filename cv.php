@@ -1,5 +1,9 @@
 <?php
 // --------------LOGGING--------------------
+// Taken and adapted from http://www.ebrueggeman.com/blog/php_site_access_log
+
+// This is a simple way of logging web page accesses without needing the priviledges
+// to modify the apache server config.
 
 //ASSIGN VARIABLES TO USER INFO
 $time = date("M j G:i:s Y");
