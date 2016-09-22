@@ -209,18 +209,20 @@
     <div class="experience">
       <xsl:call-template name="line" />
       <xsl:apply-templates select="line" />
-      <div class="institution_line">
-	<xsl:value-of select="institution" />
-	<xsl:if test="note">
-	  <xsl:text>, </xsl:text>
-	  <xsl:value-of select="note" />
-	</xsl:if>
-	<ul class="detail">
-	  <xsl:for-each select="detail">
-	    <li><xsl:value-of select="." /></li>
-	  </xsl:for-each>
-	</ul>
-      </div>
+      <xsl:for-each select="institution">
+	<div class="institution_line">
+	  <xsl:value-of select="." />
+	  <xsl:if test="@note">
+	    <xsl:text>, </xsl:text>
+	    <xsl:value-of select="@note" />
+	  </xsl:if>
+	</div>
+      </xsl:for-each>
+      <ul class="detail">
+	<xsl:for-each select="detail">
+	  <li><xsl:value-of select="." /></li>
+	</xsl:for-each>
+      </ul>
     </div>
   </xsl:template>
   
