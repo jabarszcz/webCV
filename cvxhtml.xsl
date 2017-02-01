@@ -92,16 +92,6 @@
   <!-- TRANSLATION TO XHTML =============================================== -->
   
   <xsl:template match="cv">
-<!--    <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</xsl:text> -->
-    
-    <html> <!-- xmlns="http://www.w3.org/1999/xhtml">-->
-      <head>
-	<link rel="stylesheet" type="text/css" href="cv.css" />
-	<link rel="shortcut icon" href="favicon.ico" />
-	<title><xsl:value-of select="info/title" /></title>
-      </head>
-      <body>
 	<div class="master_container">
 	  <xsl:apply-templates select="info" />
 	  <xsl:apply-templates select="skills" />
@@ -127,8 +117,6 @@
 
 	  <xsl:apply-templates select="interests" />
 	</div>
-      </body>
-    </html>  
   </xsl:template>
 
   <xsl:template match="info">
@@ -218,11 +206,13 @@
 	  </xsl:if>
 	</div>
       </xsl:for-each>
-      <ul class="detail">
-	<xsl:for-each select="detail">
-	  <li><xsl:value-of select="." /></li>
-	</xsl:for-each>
-      </ul>
+      <xsl:if test="detail">
+	<ul class="detail">
+	  <xsl:for-each select="detail">
+	    <li><xsl:value-of select="." /></li>
+	  </xsl:for-each>
+	</ul>
+      </xsl:if>
     </div>
   </xsl:template>
   
@@ -238,6 +228,9 @@
 	    <xsl:text> - </xsl:text>
 	    <span class="time_finish"><xsl:value-of select="finish" /></span>
 	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:text> </xsl:text>
+	  </xsl:otherwise>
 	</xsl:choose>
       </div>
       <div class="description">
