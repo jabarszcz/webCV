@@ -9,7 +9,7 @@
   <xsl:output indent="yes" />
 
   <!-- LANGUAGE SELECTION AND PRIVACY FILTER ==========================-->
-  
+
   <!-- Parameters -->
   <xsl:param name="language" select="'FR'" />
   <xsl:param name="privacy" select="'private'" />
@@ -53,7 +53,7 @@
 	<xsl:copy-of select="." />
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>    
+  </xsl:template>
 
   <!-- Content filter -->
   <xsl:template name="filter_content">
@@ -90,7 +90,7 @@
   <!-- ==================================================================== -->
 
   <!-- TRANSLATION TO XHTML =============================================== -->
-  
+
   <xsl:template match="cv">
 	<div class="master_container">
 	  <xsl:apply-templates select="info" />
@@ -121,27 +121,27 @@
 
   <xsl:template match="info">
     <div class="info">
-      <h1><xsl:value-of select="name" /></h1>
+      <h1><xsl:copy-of select="name/*|name/text()" /></h1>
       <div class="address">
 	<p><xsl:apply-templates select="address" /></p>
       </div>
       <div class="contacts">
 	<p>
-	  <xsl:value-of select="telephone" /> <br />
-	  <xsl:value-of select="email" />
+	  <xsl:copy-of select="telephone/*|telephone/text()" /> <br />
+	  <xsl:copy-of select="email/*|email/text()" />
 	</p>
       </div>
     </div>
   </xsl:template>
 
   <xsl:template match="address">
-    <xsl:value-of select="line1" />
+    <xsl:copy-of select="line1/*|line1/text()" />
     <xsl:if test="city|province|zip"><br /></xsl:if>
     <xsl:if test="city">
-      <xsl:value-of select="city" />,
+      <xsl:copy-of select="city/*|city/text()" />,
     </xsl:if>
-    <xsl:value-of select="province" /> <xsl:text> </xsl:text>
-    <xsl:value-of select="zip" />    
+    <xsl:copy-of select="province/*|province/text()" /> <xsl:text> </xsl:text>
+    <xsl:copy-of select="zip/*|zip/text()" />
   </xsl:template>
 
   <xsl:template match="skills">
@@ -165,20 +165,20 @@
 	    </xsl:when>
 	    <xsl:otherwise>
 	      <xsl:for-each select="skill_line">
-		<xsl:value-of select="." /> <br />
+		<xsl:copy-of select="./*|./text()" /> <br />
 	      </xsl:for-each>
 	    </xsl:otherwise>
 	  </xsl:choose>
 	</div>
       </div>
-    </div>	
+    </div>
   </xsl:template>
 
   <xsl:template match="section" name="section">
     <xsl:param name="contents" select="experience" />
     <div class="section">
       <div class="title_container">
-	<h2><xsl:value-of select="title" /></h2>
+	<h2><xsl:copy-of select="title/*|title/text()" /></h2>
       </div>
       <div class="contents_container">
 	<xsl:apply-templates select="$contents[not(finish or year)]">
@@ -199,7 +199,7 @@
       <xsl:apply-templates select="line" />
       <xsl:for-each select="institution">
 	<div class="institution_line">
-	  <xsl:value-of select="." />
+	  <xsl:copy-of select="./*|./text()" />
 	  <xsl:if test="@note">
 	    <xsl:text>, </xsl:text>
 	    <xsl:value-of select="@note" />
@@ -209,24 +209,24 @@
       <xsl:if test="detail">
 	<ul class="detail">
 	  <xsl:for-each select="detail">
-	    <li><xsl:value-of select="." /></li>
+	    <li><xsl:copy-of select="./*|./text()" /></li>
 	  </xsl:for-each>
 	</ul>
       </xsl:if>
     </div>
   </xsl:template>
-  
+
   <xsl:template match="line" name="line">
     <div class="experience_line">
       <div class="time">
 	<xsl:choose>
 	  <xsl:when test="year">
-	    <xsl:value-of select="year" />
+	    <xsl:copy-of select="year/*|year/text()" />
 	  </xsl:when>
 	  <xsl:when test="start">
-	    <span class="time_start"><xsl:value-of select="start" /></span>
+	    <span class="time_start"><xsl:copy-of select="start/*|start/text()" /></span>
 	    <xsl:text> - </xsl:text>
-	    <span class="time_finish"><xsl:value-of select="finish" /></span>
+	    <span class="time_finish"><xsl:copy-of select="finish/*|finish/text()" /></span>
 	  </xsl:when>
 	  <xsl:otherwise>
 	    <xsl:text> </xsl:text>
@@ -236,14 +236,14 @@
       <div class="description">
 	<xsl:choose>
 	  <xsl:when test="title">
-	    <xsl:value-of select="title" />
+	    <xsl:copy-of select="title/*|title/text()" />
 	  </xsl:when>
 	  <xsl:when test="short|rest">
 	    <span class="short">
-	      <xsl:value-of select="short" />
+	      <xsl:copy-of select="short/*|short/text()" />
 	    </span>
 	    <xsl:text> </xsl:text>
-	    <xsl:value-of select="rest" />
+	    <xsl:copy-of select="rest/*|rest/text()" />
 	  </xsl:when>
 	</xsl:choose>
       </div>
@@ -271,15 +271,15 @@
 	    </xsl:when>
 	    <xsl:when test="line"> <!-- TODO merge skillset into here -->
 	      <xsl:for-each select="line">
-		<xsl:value-of select="." /> <br />
+		<xsl:copy-of select="./*|./text()" /> <br />
 	      </xsl:for-each>
 	    </xsl:when>
 	  </xsl:choose>
 	</div>
       </div>
-    </div>	
+    </div>
   </xsl:template>
-  
+
   <!-- UTILITY TEMPLATES =========================================== -->
 
   <xsl:template name="max">
@@ -312,5 +312,5 @@
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
-  
+
 </xsl:transform>
