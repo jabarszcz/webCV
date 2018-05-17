@@ -98,13 +98,15 @@
 
 	  <!-- Find section importance -->
 	  <xsl:variable name="annotated">
-	    <xsl:for-each select="section[experience and not(@prio)]">
+	    <xsl:for-each select="section[experience]">
 	      <xsl:copy>
-		<xsl:attribute name="prio">
-		  <xsl:call-template name="max">
-		    <xsl:with-param name="nodes" select="experience/@prio|experience/@tresh[not(../@prio)]" />
-		  </xsl:call-template>
-		</xsl:attribute>
+		<xsl:if test="@prio">
+		  <xsl:attribute name="prio">
+		    <xsl:call-template name="max">
+		      <xsl:with-param name="nodes" select="experience/@prio|experience/@tresh[not(../@prio)]" />
+		    </xsl:call-template>
+		  </xsl:attribute>
+		</xsl:if>
 		<xsl:apply-templates select="node()|@*" mode="copy" />
 	      </xsl:copy>
 	    </xsl:for-each>
